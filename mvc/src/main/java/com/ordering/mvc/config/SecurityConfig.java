@@ -29,6 +29,7 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST = {
             "/api/product/**",
             "/api/admin/product/**",
+            "/api/admin/category/**",
             "/api/cart/**",
             "/api/category/**",
             "/api/order/**",

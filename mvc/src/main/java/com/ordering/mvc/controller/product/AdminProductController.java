@@ -52,7 +52,7 @@ public class AdminProductController {
         return ResponseEntity.ok(ApiResponse.<Void>builder()
                 .status("SUCCESS")
                 .code(200)
-                .message("Product Update successfully")
+                .message("Product delete successfully")
                 .data(null)
                 .build());
     }
