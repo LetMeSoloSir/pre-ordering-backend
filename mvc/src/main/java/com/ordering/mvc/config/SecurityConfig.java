@@ -1,35 +1,34 @@
 package com.ordering.mvc.config;
 
-import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private final UserStatusFilter userStatusFilter;
 
     private static final String[] WHITE_LIST = {
             "/api/product/**",
-            "/api/admin/product/**",
-            "/api/admin/category/**",
             "/api/cart/**",
             "/api/category/**",
             "/api/order/**",
@@ -50,8 +49,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/assets/**", "/images/**", "/css/**", "/js/**").permitAll()
                         .requestMatchers(WHITE_LIST).permitAll()
-//                        .requestMatchers("/api/category/admin/**").hasRole("ADMIN")
-//                        .requestMatchers("/api/admin/product/**").hasRole("ADMIN")
+                        .requestMatchers("/api/category/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/product/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/me").authenticated()
                         .anyRequest().authenticated()
                 )
@@ -65,13 +64,32 @@ public class SecurityConfig {
 
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
-        grantedAuthoritiesConverter.setAuthoritiesClaimName("realm_access.roles");
 
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
-        return jwtAuthenticationConverter;
+        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+
+        converter.setJwtGrantedAuthoritiesConverter(jwt -> {
+            Set<GrantedAuthority> authorities = new HashSet<>();
+
+            // realm_access.roles
+            Map<String, Object> realmAccess = jwt.getClaim("realm_access");
+            if (realmAccess != null && realmAccess.get("roles") instanceof List<?> roles) {
+                roles.forEach(role ->
+                        authorities.add(new SimpleGrantedAuthority("ROLE_" + role))
+                );
+            }
+
+            // scope (optional)
+            List<String> scopes = jwt.getClaimAsStringList("scope");
+            if (scopes != null) {
+                scopes.forEach(scope ->
+                        authorities.add(new SimpleGrantedAuthority("SCOPE_" + scope))
+                );
+            }
+
+            return authorities;
+        });
+
+        return converter;
     }
 
     @Bean

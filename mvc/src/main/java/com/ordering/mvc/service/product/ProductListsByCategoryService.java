@@ -1,7 +1,6 @@
 package com.ordering.mvc.service.product;
 
 import com.ordering.mvc.exception.CategoryIsEmptyException;
-import com.ordering.mvc.exception.ProductNotFoundException;
 import com.ordering.mvc.model.product.ProductInfo;
 import com.ordering.mvc.model.product.ProductStatus;
 import com.ordering.mvc.repository.product.ProductRepository;

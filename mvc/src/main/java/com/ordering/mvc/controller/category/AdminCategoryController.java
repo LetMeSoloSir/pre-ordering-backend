@@ -12,12 +12,14 @@ import com.ordering.mvc.service.category.CategoryUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admin/category")
 @RequiredArgsConstructor
 @Slf4j
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminCategoryController {
     private final CategoryAddService categoryAddService;
     private final CategoryDeleteService categoryDeleteService;
