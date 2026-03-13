@@ -100,7 +100,7 @@ public class ProductController {
     public ResponseEntity<ApiResponse<List<ProductResponse>>> recentViewed(
             @AuthenticationPrincipal Jwt jwt
     ) {
-        String userId = jwt.getSubject();
+        String userId = (jwt != null) ? jwt.getSubject() : null;
         List<ProductResponse> productPage= productRecentGetService.doProcess(userId);
         return ResponseEntity.ok(ApiResponse.<List<ProductResponse>>builder()
                 .status("SUCCESS")

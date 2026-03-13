@@ -5,13 +5,13 @@ import com.ordering.mvc.request.product.ProductDetailRequest;
 import com.ordering.mvc.request.product.ProductUpdateRequest;
 import com.ordering.mvc.response.common.ApiResponse;
 import com.ordering.mvc.response.product.ProductDetailResponse;
-import com.ordering.mvc.response.product.ProductResponse;
 import com.ordering.mvc.service.product.ProductAddService;
 import com.ordering.mvc.service.product.ProductDeleteService;
 import com.ordering.mvc.service.product.ProductUpdateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/admin/product")
 @RequiredArgsConstructor
 @Slf4j
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminProductController {
     private final ProductAddService productAddService;
     private final ProductUpdateService productUpdateService;

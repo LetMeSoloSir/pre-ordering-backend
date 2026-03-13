@@ -39,7 +39,7 @@ public class ProductSearchProcessor {
                 predicates.add(cb.lessThanOrEqualTo(root.get("productPrice"), req.getMaxPrice()));
             }
             predicates.add(
-                    cb.equal(root.get("status"), ProductStatus.PUBLIC));
+                    cb.equal(root.get("status"),req.getStatus()));
 
             return cb.and(predicates.toArray(new Predicate[0]));
         };
