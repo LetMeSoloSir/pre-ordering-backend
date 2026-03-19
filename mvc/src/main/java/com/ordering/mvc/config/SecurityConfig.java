@@ -1,6 +1,9 @@
 package com.ordering.mvc.config;
 
 import lombok.RequiredArgsConstructor;
+import org.keycloak.OAuth2Constants;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.KeycloakBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,8 +28,6 @@ import java.util.*;
 @RequiredArgsConstructor
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-    private final UserStatusFilter userStatusFilter;
-
     private static final String[] WHITE_LIST = {
             "/api/product/**",
             "/api/cart/**",
@@ -38,6 +39,7 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/swagger-resources/**"
     };
+    private final UserStatusFilter userStatusFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -49,8 +51,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/assets/**", "/images/**", "/css/**", "/js/**").permitAll()
                         .requestMatchers(WHITE_LIST).permitAll()
-                        .requestMatchers("/api/category/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/admin/product/**").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/me").authenticated()
                         .anyRequest().authenticated()
                 )
@@ -104,6 +105,17 @@ public class SecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
+    }
+
+    @Bean
+    public Keycloak keycloak() {
+        return KeycloakBuilder.builder()
+                .serverUrl("http://localhost:8081")
+                .realm("pre-ordering")
+                .clientId("ordering-backend")
+                .clientSecret("x1LY3O6gQMGhVTH33QV1ytmIw4bN0lgB")
+                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
+                .build();
     }
 }
 

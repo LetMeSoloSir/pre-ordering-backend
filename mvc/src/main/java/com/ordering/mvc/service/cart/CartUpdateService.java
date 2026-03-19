@@ -14,8 +14,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CartUpdateService implements BaseService<CartUpdateRequest, Void> {
 
-    private final RedisTemplate<String, Object> redisTemplate;
     private static final String CART_PREFIX = "cart:";
+    private final RedisTemplate<String, Object> redisTemplate;
 
     private String getKey(UUID userId) {
         return CART_PREFIX + userId;

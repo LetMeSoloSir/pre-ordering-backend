@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductDeleteService implements BaseService<ProductDetailRequest,Void> {
+public class ProductDeleteService implements BaseService<ProductDetailRequest, Void> {
     private final ProductRepository productRepository;
+
     @Override
     public Void doProcess(ProductDetailRequest request) {
 

@@ -18,8 +18,8 @@ public class ProductListsGetAllService implements BaseService<Pageable, Page<Pro
 
     @Override
     public Page<ProductResponse> doProcess(Pageable pageable) {
-        Page<ProductInfo> productPage = productRepository.findByStatus(ProductStatus.PUBLIC,pageable);
-        if(productPage.isEmpty()){
+        Page<ProductInfo> productPage = productRepository.findByStatus(ProductStatus.PUBLIC, pageable);
+        if (productPage.isEmpty()) {
             throw new ProductNotFoundException();
         }
         return productPage.map(productInfo -> ProductResponse.builder()

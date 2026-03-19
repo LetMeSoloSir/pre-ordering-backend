@@ -17,7 +17,7 @@ public class CategoryGetAllService implements BaseService<Pageable, Page<Categor
 
     @Override
     public Page<CategoryResponse> doProcess(Pageable pageable) {
-        Page<CategoryInfo> categoryPage   = categoryRepository.findAll(pageable);
+        Page<CategoryInfo> categoryPage = categoryRepository.findAll(pageable);
         return categoryPage.map(c -> new CategoryResponse(
                 c.getId(),
                 c.getCategoryName(),

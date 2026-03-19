@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CartClearService implements BaseService<String, Void> {
 
-    private final RedisTemplate<String, Object> redisTemplate;
     private static final String CART_PREFIX = "cart:";
+    private final RedisTemplate<String, Object> redisTemplate;
 
     private String getKey(String userId) {
         return CART_PREFIX + userId;

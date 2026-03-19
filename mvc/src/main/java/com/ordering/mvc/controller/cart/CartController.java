@@ -63,7 +63,7 @@ public class CartController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<CartInfo>>> getAllCart(@RequestBody CartGetRequest request ) {
+    public ResponseEntity<ApiResponse<List<CartInfo>>> getAllCart(@RequestBody CartGetRequest request) {
         List<CartInfo> data = getService.doProcess(request);
 
         return ResponseEntity.ok(ApiResponse.<List<CartInfo>>builder()

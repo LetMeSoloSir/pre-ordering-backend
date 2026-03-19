@@ -1,16 +1,13 @@
-package com.ordering.mvc.request.category;
+package com.ordering.mvc.request.dashboard;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryRequest {
-    private UUID categoryId;
-
-
+public class DashboardRequest {
+    private String fromDate;
+    private String toDate;
 }

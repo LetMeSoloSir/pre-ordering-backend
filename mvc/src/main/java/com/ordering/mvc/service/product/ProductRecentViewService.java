@@ -12,8 +12,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductRecentViewService {
 
-    private final RedisTemplate<String, Object> redisTemplate;
     private static final String PREFIX = "recent:view:";
+    private final RedisTemplate<String, Object> redisTemplate;
 
     public void add(String userId, UUID productId) {
         String key = PREFIX + userId;

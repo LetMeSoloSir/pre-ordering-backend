@@ -13,19 +13,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CategoryUpdateService implements BaseService<CategoryUpdateRequest, CategoryResponse> {
     private final CategoryRepository categoryRepository;
+
     @Override
     public CategoryResponse doProcess(CategoryUpdateRequest request) {
-        if(request.getCategoryId()==null){
+        if (request.getCategoryId() == null) {
             throw new CategoryNotFoundException();
         }
-        CategoryInfo  category = categoryRepository.findById(request.getCategoryId()).orElseThrow( CategoryNotFoundException::new);
-        if(category.getCategoryName()!=null){
+        CategoryInfo category = categoryRepository.findById(request.getCategoryId()).orElseThrow(CategoryNotFoundException::new);
+        if (category.getCategoryName() != null) {
             category.setCategoryName(request.getCategoryName());
         }
-        if(category.getCategoryDescription()!=null){
+        if (category.getCategoryDescription() != null) {
             category.setCategoryDescription(request.getCategoryDescription());
         }
-        CategoryInfo updated =categoryRepository.save(category);
+        CategoryInfo updated = categoryRepository.save(category);
         return CategoryResponse.builder()
                 .categoryId(updated.getId())
                 .categoryName(updated.getCategoryName())

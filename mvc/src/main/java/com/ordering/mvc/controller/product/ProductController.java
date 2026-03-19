@@ -6,12 +6,7 @@ import com.ordering.mvc.request.product.ProductListsByCategoryRequest;
 import com.ordering.mvc.response.common.ApiResponse;
 import com.ordering.mvc.response.product.ProductDetailResponse;
 import com.ordering.mvc.response.product.ProductResponse;
-import com.ordering.mvc.service.product.ProductRecentGetService;
-import com.ordering.mvc.service.product.ProductRecentViewService;
-import com.ordering.mvc.service.product.ProductDetailService;
-import com.ordering.mvc.service.product.ProductListsByCategoryService;
-import com.ordering.mvc.service.product.ProductListsGetAllService;
-import com.ordering.mvc.service.product.ProductSearchService;
+import com.ordering.mvc.service.product.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -50,9 +45,9 @@ public class ProductController {
     }
 
     @PostMapping("/detail")
-    public ResponseEntity<ApiResponse<ProductDetailResponse>> getProductById(@RequestBody ProductDetailRequest request,@AuthenticationPrincipal Jwt jwt){
+    public ResponseEntity<ApiResponse<ProductDetailResponse>> getProductById(@RequestBody ProductDetailRequest request, @AuthenticationPrincipal Jwt jwt) {
         ProductDetailResponse response = productDetailService.doProcess(request);
-        if(jwt != null){
+        if (jwt != null) {
             String userId = jwt.getSubject();
             productRecentViewService.add(userId, request.getProductId());
         }
@@ -65,7 +60,7 @@ public class ProductController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<ApiResponse<Page<ProductResponse>>> filter( @RequestBody ProductFilterRequest request) {
+    public ResponseEntity<ApiResponse<Page<ProductResponse>>> filter(@RequestBody ProductFilterRequest request) {
         Page<ProductResponse> response = productSearchService.doProcess(request);
         return ResponseEntity.ok(ApiResponse.<Page<ProductResponse>>builder()
                 .status("SUCCESS")
@@ -86,7 +81,7 @@ public class ProductController {
         request.setSize(size);
         request.setSortBy(sortBy);
         request.setDirection(direction);
-        Page<ProductResponse>  productPage = productListsByCategoryService.doProcess(request);
+        Page<ProductResponse> productPage = productListsByCategoryService.doProcess(request);
         return ResponseEntity.ok(ApiResponse.<Page<ProductResponse>>builder()
                 .status("SUCCESS")
                 .message("Fetched products successfully")
@@ -96,12 +91,13 @@ public class ProductController {
 
 
     }
+
     @GetMapping("/recent-viewed")
     public ResponseEntity<ApiResponse<List<ProductResponse>>> recentViewed(
             @AuthenticationPrincipal Jwt jwt
     ) {
         String userId = (jwt != null) ? jwt.getSubject() : null;
-        List<ProductResponse> productPage= productRecentGetService.doProcess(userId);
+        List<ProductResponse> productPage = productRecentGetService.doProcess(userId);
         return ResponseEntity.ok(ApiResponse.<List<ProductResponse>>builder()
                 .status("SUCCESS")
                 .message("Fetched products successfully")

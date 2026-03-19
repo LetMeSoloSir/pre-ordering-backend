@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CategoryAddService implements BaseService<CategoryAddRequest, CategoryResponse> {
     private final CategoryRepository categoryRepository;
+
     @Override
     public CategoryResponse doProcess(CategoryAddRequest request) {
         if (request.getCategoryName() == null || request.getCategoryName().isEmpty()) {
             throw new IllegalArgumentException("Category name is required");
         }
-        CategoryInfo  categoryInfo = new CategoryInfo();
+        CategoryInfo categoryInfo = new CategoryInfo();
         categoryInfo.setCategoryName(request.getCategoryName());
         categoryInfo.setCategoryDescription(request.getCategoryDescription());
         CategoryInfo saved = categoryRepository.save(categoryInfo);

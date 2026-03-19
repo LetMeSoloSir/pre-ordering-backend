@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryDeleteService implements BaseService<CategoryRequest,Void> {
+public class CategoryDeleteService implements BaseService<CategoryRequest, Void> {
     private final CategoryRepository categoryRepository;
+
     @Override
     public Void doProcess(CategoryRequest request) {
-    categoryRepository.deleteById(request.getCategoryId());
+        categoryRepository.deleteById(request.getCategoryId());
         return null;
     }
 }

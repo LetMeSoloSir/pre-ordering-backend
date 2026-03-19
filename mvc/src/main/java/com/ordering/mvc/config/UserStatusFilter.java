@@ -30,16 +30,23 @@ public class UserStatusFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (auth instanceof JwtAuthenticationToken jwtAuth) {
-            Jwt jwt = jwtAuth.getToken();
+            if (auth instanceof JwtAuthenticationToken jwtAuth) {
+                Jwt jwt = jwtAuth.getToken();
 
-            UserInfo user = userSyncService.syncFromJwt(jwt);
+                UserInfo user = userSyncService.syncFromJwt(jwt);
 
-            if (!Boolean.TRUE.equals(user.getIsActive())) {
-                throw new AccessDeniedException("User is inactive");
+                if (user == null || !Boolean.TRUE.equals(user.getIsActive())) {
+                    throw new AccessDeniedException("User is inactive");
+                }
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
         }
 
         filterChain.doFilter(request, response);

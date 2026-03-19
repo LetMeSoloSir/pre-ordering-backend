@@ -8,7 +8,6 @@ import com.ordering.mvc.repository.category.CategoryRepository;
 import com.ordering.mvc.repository.product.ProductRepository;
 import com.ordering.mvc.request.product.ProductAddRequest;
 import com.ordering.mvc.response.product.ProductDetailResponse;
-import com.ordering.mvc.response.product.ProductResponse;
 import com.ordering.mvc.service.common.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

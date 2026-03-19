@@ -1,6 +1,9 @@
 package com.ordering.mvc.response.common;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
@@ -13,5 +16,5 @@ public class ApiResponse<T> {
     private String message;
     private int code;
     private T data;
-    private Instant timestamp =  Instant.now();
+    private Instant timestamp = Instant.now();
 }

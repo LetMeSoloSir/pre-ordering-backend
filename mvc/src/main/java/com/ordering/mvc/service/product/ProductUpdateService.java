@@ -8,7 +8,6 @@ import com.ordering.mvc.model.product.ProductStatus;
 import com.ordering.mvc.repository.product.ProductRepository;
 import com.ordering.mvc.request.product.ProductUpdateRequest;
 import com.ordering.mvc.response.product.ProductDetailResponse;
-import com.ordering.mvc.response.product.ProductResponse;
 import com.ordering.mvc.service.common.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,8 +33,8 @@ public class ProductUpdateService implements BaseService<ProductUpdateRequest, P
         if (product.getStatus() != ProductStatus.PUBLIC && product.getStatus() != ProductStatus.UNPUBLIC) {
             throw new InvalidSetStatusForProductException();
         }
-        if(request.getStatus() != null) product.setStatus(request.getStatus());
-        if(product.getIsDeleted() ==true){
+        if (request.getStatus() != null) product.setStatus(request.getStatus());
+        if (product.getIsDeleted() == true) {
             throw new ProductIsDeleteException();
         }
 

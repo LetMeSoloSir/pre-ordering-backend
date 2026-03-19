@@ -1,7 +1,10 @@
 package com.ordering.mvc.model.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +20,7 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     @Id
     @Column(name = "user_id", length = 100)
-    private String  userId;
+    private String userId;
     @Column(name = "username")
     private String username;
     @Column(name = "full_name")

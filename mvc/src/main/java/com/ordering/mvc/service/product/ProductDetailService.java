@@ -6,7 +6,6 @@ import com.ordering.mvc.model.product.ProductStatus;
 import com.ordering.mvc.repository.product.ProductRepository;
 import com.ordering.mvc.request.product.ProductDetailRequest;
 import com.ordering.mvc.response.product.ProductDetailResponse;
-import com.ordering.mvc.response.product.ProductResponse;
 import com.ordering.mvc.service.common.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

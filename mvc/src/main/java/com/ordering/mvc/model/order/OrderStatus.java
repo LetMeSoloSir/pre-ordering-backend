@@ -1,7 +1,6 @@
 package com.ordering.mvc.model.order;
 
 
-
 public enum OrderStatus {
     PENDING("Đang xử lý"),
     CONFIRMED("Xác nhận"),

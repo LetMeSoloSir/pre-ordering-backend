@@ -12,13 +12,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class TelegramService {
 
+    private final RestTemplate restTemplate = new RestTemplate();
     @Value("${telegram.bot.token}")
     private String botToken;
-
     @Value("${telegram.bot.chat-id}")
     private String chatId;
-
-    private final RestTemplate restTemplate = new RestTemplate();
 
     public void sendOrderPaidMessage(OrderInfo order) {
 

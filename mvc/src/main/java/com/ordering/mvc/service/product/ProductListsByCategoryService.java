@@ -18,7 +18,7 @@ public class ProductListsByCategoryService implements BaseService<ProductListsBy
 
     @Override
     public Page<ProductResponse> doProcess(ProductListsByCategoryRequest request) {
-        Page<ProductInfo> productPage = productRepository.findByCategoryIdAndStatus(request.getCategoryId(),ProductStatus.PUBLIC,request.toPageable());
+        Page<ProductInfo> productPage = productRepository.findByCategoryIdAndStatus(request.getCategoryId(), ProductStatus.PUBLIC, request.toPageable());
 
         if (productPage.isEmpty()) {
             throw new CategoryIsEmptyException();

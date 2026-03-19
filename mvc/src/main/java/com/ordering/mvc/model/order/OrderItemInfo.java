@@ -2,7 +2,9 @@ package com.ordering.mvc.model.order;
 
 import com.ordering.mvc.model.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.UUID;

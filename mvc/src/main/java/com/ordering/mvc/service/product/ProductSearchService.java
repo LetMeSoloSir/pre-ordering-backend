@@ -35,7 +35,7 @@ public class ProductSearchService implements BaseService<ProductFilterRequest, P
 
         Page<ProductInfo> productPage = productRepository.findAll(spec, pageable);
 
-        if(productPage.isEmpty()){
+        if (productPage.isEmpty()) {
             throw new ProductNotFoundException();
         }
 

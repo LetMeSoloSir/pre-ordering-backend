@@ -3,7 +3,6 @@ package com.ordering.mvc.controller.category;
 import com.ordering.mvc.request.category.CategoryAddRequest;
 import com.ordering.mvc.request.category.CategoryRequest;
 import com.ordering.mvc.request.category.CategoryUpdateRequest;
-
 import com.ordering.mvc.response.category.CategoryResponse;
 import com.ordering.mvc.response.common.ApiResponse;
 import com.ordering.mvc.service.category.CategoryAddService;
@@ -36,6 +35,7 @@ public class AdminCategoryController {
                 .data(response)
                 .build());
     }
+
     @DeleteMapping("/delete")
     public ResponseEntity<ApiResponse<Void>> delete(@RequestBody CategoryRequest request) {
         categoryDeleteService.doProcess(request);
@@ -47,6 +47,7 @@ public class AdminCategoryController {
                 .data(null)
                 .build());
     }
+
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<CategoryResponse>> updateProduct(@RequestBody CategoryUpdateRequest request) {
         CategoryResponse response = categoryUpdateService.doProcess(request);

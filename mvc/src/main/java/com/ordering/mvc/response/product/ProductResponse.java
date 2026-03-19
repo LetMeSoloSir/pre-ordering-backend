@@ -22,6 +22,7 @@ public class ProductResponse {
     private String quantityPerUnit;
     private int unitsInStock;
     private BigDecimal discount;
+
     public static ProductResponse fromEntity(ProductInfo entity) {
         return ProductResponse.builder()
                 .productId(entity.getId())

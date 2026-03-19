@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class CartGetService implements BaseService<CartGetRequest, List<CartInfo>> {
 
-    private final RedisTemplate<String, Object> redisTemplate;
     private static final String CART_PREFIX = "cart:";
+    private final RedisTemplate<String, Object> redisTemplate;
 
     private String getKey(String userId) {
         return CART_PREFIX + userId;

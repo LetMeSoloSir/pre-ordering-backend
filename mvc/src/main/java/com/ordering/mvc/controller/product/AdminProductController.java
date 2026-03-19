@@ -36,6 +36,7 @@ public class AdminProductController {
                 .data(response)
                 .build());
     }
+
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<ProductDetailResponse>> updateProduct(@RequestBody ProductUpdateRequest request) {
         ProductDetailResponse response = productUpdateService.doProcess(request);
@@ -46,9 +47,10 @@ public class AdminProductController {
                 .data(response)
                 .build());
     }
+
     @DeleteMapping("/delete")
     public ResponseEntity<ApiResponse<Void>> delete(@RequestBody ProductDetailRequest request) {
-      productDeleteService.doProcess(request);
+        productDeleteService.doProcess(request);
 
         return ResponseEntity.ok(ApiResponse.<Void>builder()
                 .status("SUCCESS")

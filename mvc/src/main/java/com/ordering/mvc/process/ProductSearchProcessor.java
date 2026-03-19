@@ -1,7 +1,6 @@
 package com.ordering.mvc.process;
 
 import com.ordering.mvc.model.product.ProductInfo;
-import com.ordering.mvc.model.product.ProductStatus;
 import com.ordering.mvc.request.product.ProductFilterRequest;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -39,7 +38,7 @@ public class ProductSearchProcessor {
                 predicates.add(cb.lessThanOrEqualTo(root.get("productPrice"), req.getMaxPrice()));
             }
             predicates.add(
-                    cb.equal(root.get("status"),req.getStatus()));
+                    cb.equal(root.get("status"), req.getStatus()));
 
             return cb.and(predicates.toArray(new Predicate[0]));
         };
