@@ -1,0 +1,263 @@
+.navigation{
+    width:100%;
+    font-family:Arial, Helvetica, sans-serif;
+
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+}
+
+/* TOP BAR */
+.nav-top{
+    background:#fafafa;
+    padding:8px 80px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#666;
+    border-bottom:1px solid #eee;
+}
+
+.nav-auth a{
+    text-decoration:none;
+    color:#444;
+    margin:0 6px;
+}
+
+.nav-auth a:hover{
+    color:#e91e63;
+}
+
+/* HEADER */
+.nav-header{
+    padding:18px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* LOGO */
+.nav-logo a{
+    font-size:30px;
+    font-weight:bold;
+    text-decoration:none;
+    color:#e91e63;
+}
+
+.nav-logo span{
+    color:#333;
+}
+
+/* RIGHT SIDE */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:40px;
+}
+
+/* MENU */
+.nav-menu{
+    display:flex;
+    gap:30px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:#333;
+    font-size:16px;
+    font-weight:500;
+}
+
+.nav-menu a:hover{
+    color:#e91e63;
+}
+
+/* CART */
+.nav-cart a{
+    font-size:22px;
+    color:white;
+    background:#e91e63;
+    padding:10px 12px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.nav-cart a:hover{
+    background:#c2185b;
+}
+
+
+.nav-user{
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-username{
+    font-weight: 500;
+}
+
+.dropdown-menu{
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dropdown-menu a{
+    text-decoration: none;
+    color: black;
+}
+
+.logout{
+    color: red;
+    cursor: pointer;
+}
+
+.nav-user {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* USERNAME BOX */
+
+.nav-username {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+
+    padding: 5px 10px;
+    border-radius: 6px;
+
+    transition: all 0.2s ease;
+}
+
+.nav-username:hover {
+    background: #f5f5f5;
+}
+
+/* ICON */
+
+.user-icon {
+    font-size: 22px;
+    color: #666;
+}
+
+.dropdown-icon {
+    font-size: 12px;
+    color: #666;
+}
+
+/* USERNAME TEXT */
+
+.username-text {
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* DROPDOWN */
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    width: 150px;
+}
+
+.dropdown-menu a,
+.dropdown-menu .logout {
+    display: block;
+    padding: 10px 15px;
+    font-size: 14px;
+
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu .logout:hover {
+    background: #f3f3f3;
+}
+
+.nav-auth{
+    display:flex;
+    gap:10px;
+}
+
+/* LOGIN */
+
+.login-btn{
+    text-decoration:none;
+    color:#333;
+    font-size:14px;
+    font-weight:500;
+
+    padding:6px 14px;
+
+    border:1px solid #ddd;
+    border-radius:6px;
+
+    transition:all 0.2s ease;
+}
+
+.login-btn:hover{
+    background:#f5f5f5;
+}
+
+/* REGISTER */
+
+.register-btn{
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+
+    padding:6px 14px;
+
+    background:#ff4d4f;
+    border-radius:6px;
+
+    transition:all 0.2s ease;
+}
+
+.register-btn:hover{
+    background:#e63946;
+}
+
+.nav-cart {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}

@@ -1,0 +1,135 @@
+/* background */
+
+.auth-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946");
+    background-size:cover;
+    background-position:center;
+
+    padding:20px;
+    margin-top:70px;
+}
+
+/* card */
+
+.auth-card{
+    width:380px;
+    background:white;
+    padding:40px;
+
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* title */
+
+.auth-title{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:26px;
+    color:#e91e63;
+}
+
+/* fields */
+
+.auth-field{
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.auth-field label{
+    font-size:14px;
+    margin-bottom:6px;
+    color:#555;
+}
+
+.auth-field input{
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.auth-field input:focus{
+    outline:none;
+    border-color:#e91e63;
+    box-shadow:0 0 5px rgba(233,30,99,0.3);
+}
+
+/* button */
+
+.auth-button{
+    width:100%;
+    padding:12px;
+    background:linear-gradient(45deg,#ff4d6d,#e91e63);
+    border:none;
+    border-radius:8px;
+
+    color:white;
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.auth-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(233,30,99,0.4);
+}
+
+/* error */
+
+.auth-error{
+    margin-top:15px;
+    color:red;
+    font-size:14px;
+    text-align:center;
+}
+
+/* link */
+
+.auth-links{
+    margin-top:20px;
+    text-align:center;
+    font-size:14px;
+}
+
+.auth-links a{
+    color:#e91e63;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.auth-subtitle{
+    text-align:center;
+    font-size:14px;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.auth-success{
+    margin-top:15px;
+    color:#2e7d32;
+    text-align:center;
+    font-size:14px;
+    background:#e8f5e9;
+    padding:10px;
+    border-radius:6px;
+}
+
+.auth-error{
+    margin-top:15px;
+    color:#c62828;
+    text-align:center;
+    font-size:14px;
+    background:#ffebee;
+    padding:10px;
+    border-radius:6px;
+}
